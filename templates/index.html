@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Check Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="glass-card">
+        <div class="header-flex">
+            <div>
+                <h1>Vibe Check 💸</h1>
+                <div class="stats-row">
+                    <div class="stat-box balance">
+                        <p>Main Bag</p>
+                        <h2>₹<span id="balance">0.00</span></h2>
+                    </div>
+                    <div class="stat-box spent">
+                        <p>Total Spent</p>
+                        <h2>₹<span id="total-spent">0.00</span></h2>
+                    </div>
+                </div>
+            </div>
+            <button onclick="addBalance()" class="add-btn" title="Add Funds">+</button>
+        </div>
+
+        <div class="main-content">
+            <div class="chart-container">
+                <canvas id="expenseChart"></canvas>
+            </div>
+
+            <div class="form-container">
+                <h3>Log the Damage</h3>
+                <input type="number" id="amount" placeholder="Amount in ₹">
+                <select id="category">
+                    <option value="Food">🍕 Food</option>
+                    <option value="Travel">🚗 Travel</option>
+                    <option value="Shopping">🛍️ Shopping</option>
+                    <option value="Entertainment">🎮 Fun</option>
+                    <option value="Others">✨ Others</option>
+                </select>
+                <input type="date" id="date">
+                <button onclick="saveExpense()" class="submit-btn">Secure the Data</button>
+            </div>
+        </div>
+
+        <div class="history-section">
+            <div class="history-header">
+                <h3>Recent Activity</h3>
+                <button onclick="resetData()" class="reset-btn">Reset All</button>
+            </div>
+            <table id="expenseTable">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th style="text-align: right;">Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
